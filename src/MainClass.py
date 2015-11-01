@@ -6,5 +6,5 @@ from queue import *
 
 class MainClass:
     def __init__(self):
-        self.ownShip = Aircraft()
+        self.ownShip = Aircraft(0, 0, 0, 0, 0, 0, 0, 0)
         self.aircraftQueue = PriorityQueue()
