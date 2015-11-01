@@ -2,7 +2,7 @@ __author__ = 'AnyaAdmin'
 import unittest
 
 
-class AircraftComparePriorityTest(unittest):
+class AircraftComparePriorityTest(unittest.TestCase):
     def test_compare_priority(self):
         self.fail()
 
