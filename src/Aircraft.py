@@ -2,15 +2,17 @@ __author__ = 'randy'
 
 
 class Aircraft:
-    def __init__(self):
-        self.xInFeet = 0
-        self.yInFeet = 0
-        self.zInFeet = 0
-        self.heading = 0
-        self.vSpeedFPS = 0
-        self.gSpeedFPS = 0
-        self.alertLevel = 0
-        self.id = 0
+    def __init__(self, xInFeet: int, yInFeet: int, zInFeet: int,
+                 heading: int, vSpeedFPS: int, gSpeedFPS: int,
+                 alertLevel: int, id: int):
+        self.xInFeet = xInFeet
+        self.yInFeet = yInFeet
+        self.zInFeet = zInFeet
+        self.heading = heading
+        self.vSpeedFPS = vSpeedFPS
+        self.gSpeedFPS = gSpeedFPS
+        self.alertLevel = alertLevel
+        self.id = id
 
     def getXInFeet(self):
         return self.xInFeet
