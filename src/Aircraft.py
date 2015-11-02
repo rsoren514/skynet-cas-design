@@ -3,7 +3,7 @@ __author__ = 'randy'
 
 class Aircraft:
     def __init__(self, xInFeet: int, yInFeet: int, zInFeet: int,
-                 heading: int, vSpeedFPS: int, gSpeedFPS: int,
+                 heading: float, vSpeedFPS: int, gSpeedFPS: int,
                  alertLevel: int, id: int):
         self.xInFeet = xInFeet
         self.yInFeet = yInFeet
