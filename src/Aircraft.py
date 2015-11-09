@@ -36,7 +36,8 @@ class Aircraft:
         return self.alertLevel
 
     def calcAlertLevel(self, ownShip):
-        return Aircraft(0, 0, 0, 0, 0, 0, 0, 0)
+        return
+        #return Aircraft(0, 0, 0, 0, 0, 0, 0, 0)
 
     def comparePriority(self, other):
         return 0
