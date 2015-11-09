@@ -94,3 +94,6 @@ class AircraftDetermineActionTest(unittest.TestCase):
         MainClass.determineAction(MainClass.aircraftQueue())
         self.assertLess(MainClass.ownShip.myAction.getVSChange(),0)
         self.assertGreater(MainClass.ownShip.myAction.getUrgency(),0)
+
+if __name__ == "__main__":
+    unittest.main()
