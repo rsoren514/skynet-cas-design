@@ -1,10 +1,9 @@
 __author__ = 'AnyaAdmin'
 import unittest
 
-from src.Aircraft import *
 from src.MainClass import *
-
 from src.Aircraft import *
+
 class AircraftcalcAlertLevelTest(unittest.TestCase):
     def test_alertLv1(self):
         MainClass.setOwnShip(60000,60000,10000,50,30,40,0,1)
