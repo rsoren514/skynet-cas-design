@@ -27,12 +27,12 @@ class AircraftSim:
         self.__zInFeet -= 10
 
     def printPos(self):
-        print ("Aircraft ID is: ") + (self.__aircraftID)
-        print ("X: ") + str(self.__xInFeet)
-        print ("Y: ") + str(self.__yInFeet)
-        print ("Z: ") + str(self.__zInFeet)
-        print "The VSpeed is " + str(self.__vSpeedFPS)
-        print "The heading is " + str(self.__heading)
+        print ("Aircraft ID is: " + self.__aircraftID)
+        print ("X: " + str(self.__xInFeet))
+        print ("Y: " + str(self.__yInFeet))
+        print ("Z: " + str(self.__zInFeet))
+        print ("The VSpeed is " + str(self.__vSpeedFPS))
+        print ("The heading is " + str(self.__heading))
 
     def printChange(self, x, y, z):
         print ("Change in X :" + str(x))
