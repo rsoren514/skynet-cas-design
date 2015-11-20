@@ -19,8 +19,10 @@ class MainClass:
     def determineAction(self, others:PriorityQueue):
         return
 
-    def setOwnShip(xInFeet: int, yInFeet: int, zInFeet: int,
+    def setOwnShip(self, xInFeet: int, yInFeet: int, zInFeet: int,
                  heading: float, vSpeedFPS: int, gSpeedFPS: int,
                  alertLevel: int, id: int):
-        ownShip = Aircraft(xInFeet, yInFeet,zInFeet, heading, vSpeedFPS, gSpeedFPS, alertLevel, id)
+        self.ownShip = Aircraft(xInFeet, yInFeet, zInFeet,
+                                heading, vSpeedFPS, gSpeedFPS,
+                                alertLevel, id)
 
