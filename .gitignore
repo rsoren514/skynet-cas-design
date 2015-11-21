@@ -1,3 +1,5 @@
 *.iml
 Untitled Diagram.xml
 .idea
+.coverage
+htmlcov

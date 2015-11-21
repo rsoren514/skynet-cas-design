@@ -48,8 +48,9 @@ class Aircraft:
     def __lt__(self, other):
         if self.alertLevel < other.alertLevel:
             return True
-        if self.distanceToOwnship() < other.distanceToOwnship():
-            return True
+        if self.alertLevel == other.alertLevel:
+            if self.distanceToOwnship() < other.distanceToOwnship():
+                return True
         return False
 
     def __eq__(self, other):

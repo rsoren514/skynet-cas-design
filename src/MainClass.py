@@ -32,7 +32,8 @@ class MainClass:
         for a in aircraftList:
             self.aircraftQueue.put(a)
 
-    def updateDisplay(self, alertLevel, action):
+    def updateDisplay(self, aircraftList, alertLevel, action):
+        self.display.updateAircraftList(aircraftList)
         self.display.updateCurAlertLevel(alertLevel)
         self.display.updateCurAction(action)
 
@@ -45,12 +46,11 @@ class MainClass:
 
             if len(aircraftList) > 0:
                 self.buildAircraftPriorityQueue(aircraftList)
-                self.display.updateAircraftList(aircraftList)
 
                 curAlertLevel = self.aircraftQueue.queue[0].getAlertLevel()
                 curAction = self.determineAction(self.aircraftQueue)
 
-                self.updateDisplay(curAlertLevel, curAction)
+                self.updateDisplay(aircraftList, curAlertLevel, curAction)
                 self.updateLoudSpeaker(curAction)
 
     def determineAction(self, others: PriorityQueue):
