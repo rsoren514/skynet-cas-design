@@ -21,7 +21,7 @@ class AircraftComparePriorityTest(unittest.TestCase):
         h_farther = Aircraft(0, 20000, 0, 180.0, 0, 220, 0, 2)
 
         result = do_compare_a_to_b(own_ship, h_closer, h_farther)
-        self.assertGreater(result, 0)
+        self.assertLess(result, 0)
 
     def test_vert_closer_gt(self):
         own_ship = get_own_ship(0.0, 0, 220)
@@ -29,7 +29,7 @@ class AircraftComparePriorityTest(unittest.TestCase):
         v_farther = Aircraft(0, 5280, 1000, 180.0, 0, 220, 0, 1)
 
         result = do_compare_a_to_b(own_ship, v_closer, v_farther)
-        self.assertGreater(result, 0)
+        self.assertLess(result, 0)
 
     def test_equal_dist_equal_priority(self):
         own_ship = get_own_ship(0.0, 0, 220)

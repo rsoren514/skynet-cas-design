@@ -73,7 +73,12 @@ class Aircraft:
         return self.comparePriority(other) == 0
 
     def comparePriority(self, other):
-        if self.alertLevel < other.alertLevel:
+        #
+        # Greater alert levels indicate a higher priority, and
+        # should thus sort as "less" than other aircraft in the
+        # priority queue.
+        #
+        if self.alertLevel > other.alertLevel:
             return -1
         if self.alertLevel == other.alertLevel:
             if self.distanceToOwnship() < other.distanceToOwnship():

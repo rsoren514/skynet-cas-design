@@ -38,7 +38,8 @@ class AircraftPriorityQueueTest(unittest.TestCase):
         first = pri_queue.get()
         while not pri_queue.empty():
             second = pri_queue.get()
-            self.assertLessEqual(first.getAlertLevel(), second.getAlertLevel())
+            self.assertGreaterEqual(first.getAlertLevel(),
+                                    second.getAlertLevel())
             if first.getAlertLevel() == second.getAlertLevel():
                 self.assertLessEqual(first.distanceToOwnship(),
                                      second.distanceToOwnship())
