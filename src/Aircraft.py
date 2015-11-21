@@ -1,7 +1,7 @@
 __author__ = 'randy'
 
 from math import *
-
+from src.Util import *
 
 class Aircraft:
     def __init__(self, xInFeet: int, yInFeet: int, zInFeet: int,
@@ -37,8 +37,29 @@ class Aircraft:
     def getAlertLevel(self):
         return self.alertLevel
 
+    def horizDistToOwnship(self):
+        return sqrt(self.xInFeet * self.xInFeet +
+                    self.yInFeet * self.yInFeet)
+
     def calcAlertLevel(self, ownShip):
-        return
+        hDistNM = feetToNauticalMiles(self.horizDistToOwnship())
+        vDist = abs(self.getZInFeet())
+        if vDist <= 1500 and hDistNM <= 4.0:
+            self.alertLevel = 5
+            return
+        if vDist <= 2000 and hDistNM <= 5.0:
+            self.alertLevel = 4
+            return
+        if vDist <= 3000 and hDistNM <= 6.0:
+            self.alertLevel = 3
+            return
+        #
+        # TODO
+        # if ???????????????:
+        #   self.alertLevel = 2
+        #   return
+        #
+        self.alertLevel = 1
 
     def distanceToOwnship(self):
         return sqrt(self.xInFeet * self.xInFeet +
@@ -46,18 +67,17 @@ class Aircraft:
                     self.zInFeet * self.zInFeet)
 
     def __lt__(self, other):
-        if self.alertLevel < other.alertLevel:
-            return True
-        if self.alertLevel == other.alertLevel:
-            if self.distanceToOwnship() < other.distanceToOwnship():
-                return True
-        return False
+        return self.comparePriority(other) < 0
 
     def __eq__(self, other):
-        if self.alertLevel == other.alertLevel:
-            if self.distanceToOwnship() == other.distanceToOwnship():
-                return True
-        return False
+        return self.comparePriority(other) == 0
 
     def comparePriority(self, other):
-        return 0
+        if self.alertLevel < other.alertLevel:
+            return -1
+        if self.alertLevel == other.alertLevel:
+            if self.distanceToOwnship() < other.distanceToOwnship():
+                return -1
+            if self.distanceToOwnship() == other.distanceToOwnship():
+                return 0
+        return 1
