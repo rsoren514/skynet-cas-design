@@ -1,5 +1,7 @@
 __author__ = 'randy'
 
+from math import *
+
 
 class Aircraft:
     def __init__(self, xInFeet: int, yInFeet: int, zInFeet: int,
@@ -37,6 +39,24 @@ class Aircraft:
 
     def calcAlertLevel(self, ownShip):
         return
+
+    def distanceToOwnship(self):
+        return sqrt(self.xInFeet * self.xInFeet +
+                    self.yInFeet * self.yInFeet +
+                    self.zInFeet * self.zInFeet)
+
+    def __lt__(self, other):
+        if self.alertLevel < other.alertLevel:
+            return True
+        if self.distanceToOwnship() < other.distanceToOwnship():
+            return True
+        return False
+
+    def __eq__(self, other):
+        if self.alertLevel == other.alertLevel:
+            if self.distanceToOwnship() == other.distanceToOwnship():
+                return True
+        return False
 
     def comparePriority(self, other):
         return 0

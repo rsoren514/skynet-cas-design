@@ -7,5 +7,6 @@ class ADS_BDataProcessor:
     def __init__(self):
         return
 
-    def getAircraftList(self, data: ADS_BDataFrame):
+    @staticmethod
+    def getAircraftList(data: ADS_BDataFrame):
         return []
