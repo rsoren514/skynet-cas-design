@@ -40,18 +40,21 @@ class MainClass:
     def updateLoudSpeaker(self, action):
         self.loudSpeaker.annunciate(action)
 
+    def loopIter(self):
+        aircraftList = self.refreshAircraftListFromADSB()
+
+        if len(aircraftList) > 0:
+            self.buildAircraftPriorityQueue(aircraftList)
+
+            curAlertLevel = self.aircraftQueue.queue[0].getAlertLevel()
+            curAction = self.determineAction(self.aircraftQueue)
+
+            self.updateDisplay(aircraftList, curAlertLevel, curAction)
+            self.updateLoudSpeaker(curAction)
+
     def eventLoop(self):
         while True:
-            aircraftList = self.refreshAircraftListFromADSB()
-
-            if len(aircraftList) > 0:
-                self.buildAircraftPriorityQueue(aircraftList)
-
-                curAlertLevel = self.aircraftQueue.queue[0].getAlertLevel()
-                curAction = self.determineAction(self.aircraftQueue)
-
-                self.updateDisplay(aircraftList, curAlertLevel, curAction)
-                self.updateLoudSpeaker(curAction)
+            self.loopIter()
 
     def determineAction(self, others: PriorityQueue):
         return Action(0, 0)
