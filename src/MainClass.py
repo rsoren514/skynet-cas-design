@@ -47,7 +47,7 @@ class MainClass:
             self.buildAircraftPriorityQueue(aircraftList)
 
             curAlertLevel = self.aircraftQueue.queue[0].getAlertLevel()
-            curAction = self.determineAction(self.aircraftQueue)
+            curAction = self.determineAction()
 
             self.updateDisplay(aircraftList, curAlertLevel, curAction)
             self.updateLoudSpeaker(curAction)
@@ -86,7 +86,7 @@ class MainClass:
 
     def setOwnShip(self, xInFeet: int, yInFeet: int, zInFeet: int,
                    heading: float, vSpeedFPS: int, gSpeedFPS: int,
-                   alertLevel: int, id: int):
+                   alertLevel: AlertLevel, id: int):
         self.ownShip = Aircraft(xInFeet, yInFeet, zInFeet,
                                 heading, vSpeedFPS, gSpeedFPS,
                                 alertLevel, id)
