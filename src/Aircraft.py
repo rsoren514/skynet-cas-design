@@ -7,7 +7,7 @@ from src.Util import *
 class Aircraft:
     def __init__(self, xInFeet: int, yInFeet: int, zInFeet: int,
                  heading: float, vSpeedFPS: int, gSpeedFPS: int,
-                 alertLevel: int, id: int):
+                 alertLevel: AlertLevel, id: int):
         self.xInFeet = xInFeet
         self.yInFeet = yInFeet
         self.zInFeet = zInFeet
@@ -54,12 +54,10 @@ class Aircraft:
         if vDist <= 3000 and hDistNM <= 6.0:
             self.alertLevel = AlertLevel.AL_ResolAdvisoryLow
             return
-        #
-        # TODO
-        # if ???????????????:
-        #   self.alertLevel = AlertLevel.AL_PrevAdvisory
-        #   return
-        #
+        if vDist <= 3000 or hDistNM <=6.0:
+            self.alertLevel = AlertLevel.AL_PrevAdvisory
+            return
+
         self.alertLevel = AlertLevel.AL_NoAlert
 
     def distanceToOwnship(self):

@@ -56,8 +56,33 @@ class MainClass:
         while True:
             self.loopIter()
 
-    def determineAction(self, others: PriorityQueue):
-        return Action(0, 0)
+    def determineAction(self):
+        myAircraft = self.aircraftQueue.get()
+        if(myAircraft.getAlertLevel() == AlertLevel.AL_PrevAdvisory):
+            return Action(0,1)
+        elif(myAircraft.getAlertLevel() == AlertLevel.AL_ResolAdvisoryLow):
+            if(myAircraft.getZInFeet()>self.ownShip.getZInFeet()):
+                return Action(-1,-1)
+            else:
+                return Action(1,-1)
+            #TODO
+            #Implement if both aircrafts Z levels are identical
+        elif(myAircraft.getAlertLevel() == AlertLevel.AL_ResolAdvisoryMed):
+            if(myAircraft.getZInFeet()>self.ownShip.getZInFeet()):
+                return Action(-1,0)
+            else:
+                return Action(1,0)
+            #TODO
+            #Implement if both aircrafts Z levels are identical
+        elif(myAircraft.getAlertLevel() == AlertLevel.AL_ResolAdvisoryHigh):
+            if(myAircraft.getZInFeet()>self.ownShip.getZInFeet()):
+                return Action(-1,1)
+            else:
+                return Action(1,1)
+            #TODO
+            #Implement if both aircrafts Z levels are identical
+        else:
+            return Action(0, -1)
 
     def setOwnShip(self, xInFeet: int, yInFeet: int, zInFeet: int,
                    heading: float, vSpeedFPS: int, gSpeedFPS: int,
@@ -65,4 +90,5 @@ class MainClass:
         self.ownShip = Aircraft(xInFeet, yInFeet, zInFeet,
                                 heading, vSpeedFPS, gSpeedFPS,
                                 alertLevel, id)
-
+    def getAction(self):
+        return self.myAction
