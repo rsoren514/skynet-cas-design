@@ -116,9 +116,9 @@ air1.mkOwnershipOrgin(air2)
 air1.printPos()
 air2.printPos()
 
-import Tkinter
+import tkinter
 
-window = Tkinter.Tk()
+window = tkinter.Tk()
 window.minsize(800, 600)
 
 def doAStep():
@@ -128,7 +128,7 @@ def doAStep():
     air1.printPos()
     air2.printPos()
 
-B = Tkinter.Button(window, text ="Advance 1 sec", command = doAStep)
+B = tkinter.Button(window, text ="Advance 1 sec", command = doAStep)
 
 B.pack()
 window.mainloop()

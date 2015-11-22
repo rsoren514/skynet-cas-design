@@ -1,6 +1,7 @@
 __author__ = 'randy'
 
 from math import *
+from src.AlertLevel import *
 from src.Util import *
 
 class Aircraft:
@@ -45,21 +46,21 @@ class Aircraft:
         hDistNM = feetToNauticalMiles(self.horizDistToOwnship())
         vDist = abs(self.getZInFeet())
         if vDist <= 1500 and hDistNM <= 4.0:
-            self.alertLevel = 5
+            self.alertLevel = AlertLevel.AL_ResolAdvisoryHigh
             return
         if vDist <= 2000 and hDistNM <= 5.0:
-            self.alertLevel = 4
+            self.alertLevel = AlertLevel.AL_ResolAdvisoryMed
             return
         if vDist <= 3000 and hDistNM <= 6.0:
-            self.alertLevel = 3
+            self.alertLevel = AlertLevel.AL_ResolAdvisoryLow
             return
         #
         # TODO
         # if ???????????????:
-        #   self.alertLevel = 2
+        #   self.alertLevel = AlertLevel.AL_PrevAdvisory
         #   return
         #
-        self.alertLevel = 1
+        self.alertLevel = AlertLevel.AL_NoAlert
 
     def distanceToOwnship(self):
         return sqrt(self.xInFeet * self.xInFeet +

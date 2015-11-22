@@ -1,8 +1,8 @@
 __author__ = 'randy'
 
-from enum import Enum
+from enum import *
 
-class AlertLevel(Enum):
+class AlertLevel(IntEnum):
     AL_NoAlert = 1
     AL_PrevAdvisory = 2
     AL_ResolAdvisoryLow = 3
