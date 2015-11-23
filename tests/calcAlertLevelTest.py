@@ -13,13 +13,13 @@ class AircraftcalcAlertLevelTest(unittest.TestCase):
 
     def test_alertLv2(self):
         main = MainClass()
-        testAircraft = Aircraft(30000,30000,2500,50,30,40,0,1)
+        testAircraft = Aircraft(0,35000,2500,270,0,200,0,1)
         testAircraft.calcAlertLevel(main.ownShip)
         self.assertEquals(testAircraft.getAlertLevel(), 2)
 
     def test_alertLv3(self):
         main = MainClass()
-        testAircraft = Aircraft(25000,25000,2500,50,30,40,0,1)
+        testAircraft = Aircraft(0,35000,2500,180,0,200,0,1)
         testAircraft.calcAlertLevel(main.ownShip)
         self.assertEquals(testAircraft.getAlertLevel(), 3)
 

@@ -52,10 +52,18 @@ class Aircraft:
             self.alertLevel = AlertLevel.AL_ResolAdvisoryMed
             return
         if vDist <= 3000 and hDistNM <= 6.0:
-            self.alertLevel = AlertLevel.AL_ResolAdvisoryLow
-            return
-        if vDist <= 3000 or hDistNM <=6.0:
-            self.alertLevel = AlertLevel.AL_PrevAdvisory
+            collision = timeToCollide(
+                (0, 0),
+                velocity(ownShip.heading, ownShip.gSpeedFPS),
+                nauticalMilesToFeet(2.5),
+                (self.xInFeet, self.yInFeet),
+                velocity(self.heading, self.gSpeedFPS),
+                nauticalMilesToFeet(2.5)
+            )
+            if not collision or (collision[0] < 0 and collision[1] < 0):
+                self.alertLevel = AlertLevel.AL_PrevAdvisory
+            else:
+                self.alertLevel = AlertLevel.AL_ResolAdvisoryLow
             return
 
         self.alertLevel = AlertLevel.AL_NoAlert

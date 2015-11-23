@@ -3,19 +3,28 @@ from math import *
 def feetToNauticalMiles(feet):
     return float(feet) / 6076.12
 
+
 def nauticalMilesToFeet(nm):
     return float(nm) * 6076.12
+
 
 def knotsToFeetPerSecond(knots):
     return nauticalMilesToFeet(knots) / 60 / 60
 
+
 def dotProduct(p0, p1):
     return p0[0] * p1[0] + p0[1] * p1[1]
+
+
+def velocity(headingDegrees, speedFPS):
+    return (sin(radians(headingDegrees)) * speedFPS,
+            cos(radians(headingDegrees)) * speedFPS)
+
 
 def timeToCollide(c0, v0, r0, c1, v1, r1):
     """
     Determine the start and stop times of collision of two circles
-    moving on a plane.
+    moving on a geometric plane.
 
     :param c0: First circle's center position tuple.
     :param v0: First circle's velocity tuple.
@@ -34,7 +43,11 @@ def timeToCollide(c0, v0, r0, c1, v1, r1):
     w_dot_w = dotProduct(w, w)
     sum_r = r0 + r1
 
-    root = sqrt((d_dot_w * d_dot_w) - (w_dot_w * (d_dot_d - (sum_r * sum_r))))
+    try:
+        root = sqrt((d_dot_w * d_dot_w) -
+                    (w_dot_w * (d_dot_d - (sum_r * sum_r))))
+    except ValueError:
+        return False
 
     t0 = (-d_dot_w + root) / w_dot_w
     t1 = (-d_dot_w - root) / w_dot_w
