@@ -2,6 +2,7 @@
 Untitled Diagram.xml
 .idea
 .coverage
-htmlcov
 coverage.xml
 runtests.sh
+simulator/
+htmlcov/
