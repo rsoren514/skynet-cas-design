@@ -1,19 +1,30 @@
 from math import *
 
+#
+# One nautical mile is exactly 1,852 meters.
+#       (http://physics.nist.gov/cuu/Units/outside.html)
+#
+# One foot is exactly 0.3048 meters.
+#       (http://physics.nist.gov/Pubs/SP811/appenB.html)
+#       (ftp://ftp.nist.gov/pub/dataplot/other/reference/CONVFACT.TXT)
+#
+FEET_PER_NAUTICAL_MILE = 1852.0 / 0.3048
+NAUTICAL_MILES_PER_FOOT = 0.3048 / 1852.0
+
 def feetToNauticalMiles(feet):
-    return float(feet) / 6076.12
+    return float(feet) / FEET_PER_NAUTICAL_MILE
 
 
 def nauticalMilesToFeet(nm):
-    return float(nm) * 6076.12
+    return float(nm) * FEET_PER_NAUTICAL_MILE
 
 
 def knotsToFeetPerSecond(knots):
-    return nauticalMilesToFeet(knots) / 60 / 60
+    return nauticalMilesToFeet(knots) / 60.0 / 60.0
 
 
 def dotProduct(p0, p1):
-    return p0[0] * p1[0] + p0[1] * p1[1]
+    return (p0[0] * p1[0]) + (p0[1] * p1[1])
 
 
 def velocity(headingDegrees, speedFPS):
