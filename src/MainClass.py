@@ -47,7 +47,7 @@ class MainClass:
             self.buildAircraftPriorityQueue(aircraftList)
 
             curAlertLevel = self.aircraftQueue.queue[0].getAlertLevel()
-            curAction = self.determineAction()
+            curAction = self.determineAction
 
             self.updateDisplay(aircraftList, curAlertLevel, curAction)
             self.updateLoudSpeaker(curAction)
@@ -56,6 +56,7 @@ class MainClass:
         while True:
             self.loopIter()
 
+    @property
     def determineAction(self):
         myAircraft = self.aircraftQueue.get()
         if(myAircraft.getAlertLevel() == AlertLevel.AL_PrevAdvisory):
@@ -63,24 +64,42 @@ class MainClass:
         elif(myAircraft.getAlertLevel() == AlertLevel.AL_ResolAdvisoryLow):
             if(myAircraft.getZInFeet()>self.ownShip.getZInFeet()):
                 return Action(-1,-1)
-            else:
+            elif(myAircraft.getZInFeet()<self.ownShip.getZInFeet()):
                 return Action(1,-1)
-            #TODO
-            #Implement if both aircrafts Z levels are identical
+            elif(myAircraft.getYInFeet>self.ownShip.getYInFeet()):
+                return Action(-1,-1)
+            elif(myAircraft.getYInFeet()<self.ownShip.getYInFeet()):
+                return Action(1,-1)
+            elif(myAircraft.getXInFeet>self.ownShip.getXInFeet()):
+                return Action(-1,-1)
+            elif(myAircraft.getXInFeet()<self.ownShip.getXInFeet()):
+                return Action(1,-1)
         elif(myAircraft.getAlertLevel() == AlertLevel.AL_ResolAdvisoryMed):
             if(myAircraft.getZInFeet()>self.ownShip.getZInFeet()):
                 return Action(-1,0)
-            else:
+            elif(myAircraft.getZInFeet()<self.ownShip.getZInFeet()):
                 return Action(1,0)
-            #TODO
-            #Implement if both aircrafts Z levels are identical
+            elif(myAircraft.getYInFeet()>self.ownShip.getYInFeet()):
+                return Action(-1,0)
+            elif(myAircraft.getYInFeet()<self.ownShip.getYInFeet()):
+                return Action(1,0)
+            elif(myAircraft.getXInFeet()>self.ownShip.getXInFeet()):
+                return Action(-1,0)
+            elif(myAircraft.getXInFeet()<self.ownShip.getXInFeet()):
+                return Action(1,0)
         elif(myAircraft.getAlertLevel() == AlertLevel.AL_ResolAdvisoryHigh):
             if(myAircraft.getZInFeet()>self.ownShip.getZInFeet()):
                 return Action(-1,1)
-            else:
+            elif(myAircraft.getZInFeet()<self.ownShip.getZInFeet()):
                 return Action(1,1)
-            #TODO
-            #Implement if both aircrafts Z levels are identical
+            elif(myAircraft.getYInFeet()>self.ownShip.getYInFeet()):
+                return Action(-1,1)
+            elif(myAircraft.getYInFeet()<self.ownShip.getYInFeet()):
+                return Action(1,1)
+            elif(myAircraft.getXInFeet()>self.ownShip.getXInFeet()):
+                return Action(-1,1)
+            elif(myAircraft.getXInFeet()<self.ownShip.getXInFeet()):
+                return Action(1,1)
         else:
             return Action(0, -1)
 
